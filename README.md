@@ -9,7 +9,6 @@
 [![Actions Status](https://github.com/rubocop/rubocop/workflows/CI/badge.svg?branch=master)](https://github.com/rubocop/rubocop/actions?query=workflow%3ACI)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d2d67f728e88ea84ac69/test_coverage)](https://codeclimate.com/github/rubocop/rubocop/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d2d67f728e88ea84ac69/maintainability)](https://codeclimate.com/github/rubocop/rubocop/maintainability)
-[![SemVer](https://api.dependabot.com/badges/compatibility_score?dependency-name=rubocop&package-manager=bundler&version-scheme=semver)](https://dependabot.com/compatibility-score.html?dependency-name=rubocop&package-manager=bundler&version-scheme=semver)
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg?sanitize=true)](https://discord.gg/wJjWvGRDmm)
 
 > Role models are important. <br/>
@@ -54,7 +53,7 @@ To prevent an unwanted RuboCop update you might want to use a conservative versi
 in your `Gemfile`:
 
 ```rb
-gem 'rubocop', '~> 1.23', require: false
+gem 'rubocop', '~> 1.25', require: false
 ```
 
 See [our versioning policy](https://docs.rubocop.org/rubocop/versioning.html) for further details.
@@ -245,5 +244,5 @@ RuboCop's changelog is available [here](CHANGELOG.md).
 
 ## Copyright
 
-Copyright (c) 2012-2021 Bozhidar Batsov. See [LICENSE.txt](LICENSE.txt) for
+Copyright (c) 2012-2022 Bozhidar Batsov. See [LICENSE.txt](LICENSE.txt) for
 further details.

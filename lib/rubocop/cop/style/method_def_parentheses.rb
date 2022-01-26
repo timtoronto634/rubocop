@@ -6,8 +6,13 @@ module RuboCop
       # This cop checks for parentheses around the arguments in method
       # definitions. Both instance and class/singleton methods are checked.
       #
-      # This cop does not consider endless methods, since parentheses are
-      # always required for them.
+      # Regardless of style, parentheses are necessary for:
+      #
+      # 1. Endless methods
+      # 2. Argument lists containing a `forward-arg` (`...`)
+      # 3. Argument lists containing an anonymous block forwarding (`&`)
+      #
+      # Removing the parens would be a syntax error here.
       #
       # @example EnforcedStyle: require_parentheses (default)
       #   # The `require_parentheses` style requires method definitions
@@ -121,21 +126,13 @@ module RuboCop
           corrector.remove(arg_node.loc.end)
         end
 
-        def correct_definition(def_node, corrector)
-          arguments_range = def_node.arguments.source_range
-          args_with_space = range_with_surrounding_space(range: arguments_range, side: :left)
-          leading_space = range_between(args_with_space.begin_pos, arguments_range.begin_pos)
-          corrector.replace(leading_space, '(')
-          corrector.insert_after(arguments_range, ')')
-        end
-
         def forced_parentheses?(node)
           # Regardless of style, parentheses are necessary for:
           # 1. Endless methods
           # 2. Argument lists containing a `forward-arg` (`...`)
+          # 3. Argument lists containing an anonymous block forwarding (`&`)
           # Removing the parens would be a syntax error here.
-
-          node.endless? || node.arguments.any?(&:forward_arg_type?)
+          node.endless? || node.arguments.any?(&:forward_arg_type?) || anonymous_block_arg?(node)
         end
 
         def require_parentheses?(args)
@@ -151,7 +148,8 @@ module RuboCop
           location = node.arguments.source_range
 
           add_offense(location, message: MSG_MISSING) do |corrector|
-            correct_definition(node, corrector)
+            add_parentheses(node.arguments, corrector)
+
             unexpected_style_detected 'require_no_parentheses'
           end
         end
@@ -162,6 +160,12 @@ module RuboCop
             correct_arguments(args, corrector)
             unexpected_style_detected 'require_parentheses'
           end
+        end
+
+        def anonymous_block_arg?(node)
+          return false unless (last_argument = node.arguments.last)
+
+          last_argument.blockarg_type? && last_argument.name.nil?
         end
       end
     end

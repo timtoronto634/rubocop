@@ -2,6 +2,82 @@
 
 ## master (unreleased)
 
+## 1.25.0 (2022-01-18)
+
+### New features
+
+* [#10351](https://github.com/rubocop/rubocop/pull/10351): Support `EnforcedShorthandSyntax: either` option for `Style/HashSyntax`. ([@koic][])
+* [#10339](https://github.com/rubocop/rubocop/issues/10339): Support auto-correction for `EnforcedStyle: explicit` of `Naming/BlockForwarding`. ([@koic][])
+
+### Bug fixes
+
+* [#10344](https://github.com/rubocop/rubocop/pull/10344): Fix a false positive for `Style/CollectionCompact` when without receiver for bad methods. ([@koic][])
+* [#10353](https://github.com/rubocop/rubocop/pull/10353): Use `:ambiguous_regexp` to detect ambiguous Regexp in Ruby 3. ([@danieldiekmeier][], [@joergschiller][])
+* [#10336](https://github.com/rubocop/rubocop/issues/10336): Fix a false positive for `Style/TernaryParentheses` when using `in` keyword pattern matching as a ternary condition. ([@koic][])
+* [#10317](https://github.com/rubocop/rubocop/issues/10317): Fix a false positive for `Style/MethodCallWithArgsParentheses` when using hash value omission. ([@koic][])
+* [#8032](https://github.com/rubocop/rubocop/issues/8032): Improve ArgumentAlignment detection and correction for keyword arguments. ([@mvz][])
+* [#10331](https://github.com/rubocop/rubocop/pull/10331): Fix cop generator for nested departments. ([@fatkodima][])
+* [#10357](https://github.com/rubocop/rubocop/pull/10357): Fix a false positive for `Style/HashSyntax` when omitting the value. ([@berkos][])
+* [#10335](https://github.com/rubocop/rubocop/issues/10335): Fix a false positive for `Naming/BlockForwarding` when using multiple proc arguments. ([@koic][])
+* [#10350](https://github.com/rubocop/rubocop/pull/10350): Fix a false negative for `Lint/IncompatibleIoSelectWithFiberScheduler` when using `IO.select` with the first argument only. ([@koic][])
+* [#10358](https://github.com/rubocop/rubocop/pull/10358): Fix Style/Sample crash on beginless and endless range shuffle indexes. ([@gsamokovarov][])
+* [#10354](https://github.com/rubocop/rubocop/pull/10354): Fix Gemspec/RequiredRubyVersion version matcher when Gem::Requirement.new is used and initialised with multiple requirements. ([@nickpellant][])
+
+### Changes
+
+* [#10343](https://github.com/rubocop/rubocop/pull/10343): Require Parser 3.1.0.0 or higher. ([@koic][])
+
+## 1.24.1 (2021-12-31)
+
+### Bug fixes
+
+* [#10313](https://github.com/rubocop/rubocop/issues/10313): Fix autocorrect `Style/MapToHash` with multiline code. ([@tejasbubane][])
+* [#10251](https://github.com/rubocop/rubocop/issues/10251): Fix an incorrect autocorrect for `Gemspec/RequireMFA` when .gemspec file contains `metadata` keys assignments. ([@fatkodima][])
+* [#10329](https://github.com/rubocop/rubocop/issues/10329): Fix a false positive for `Lint/ParenthesesAsGroupedExpression` and an incorrect autocorrect for the cop with `Style/TernaryParentheses` when using ternary expression as a first argument. ([@koic][])
+* [#10317](https://github.com/rubocop/rubocop/issues/10317): Fix a false positive for `Style/MethodCallWithArgsParentheses` when using hash value omission. ([@koic][])
+* [#10333](https://github.com/rubocop/rubocop/pull/10333): Fix an incorrect autocorrect for `Naming/BlockForwarding` using explicit block forwarding without method definition parentheses. ([@koic][])
+* [#10321](https://github.com/rubocop/rubocop/issues/10321): Make `Style/MethodDefParentheses` aware of Ruby 3.1's anonymous block forwarding. ([@koic][])
+* [#10320](https://github.com/rubocop/rubocop/issues/10320): Fix an incorrect autocorrect for `Style/FileWrite` when using heredoc argument. ([@koic][])
+* [#10319](https://github.com/rubocop/rubocop/issues/10319): Require rubocop-ast 1.15.1 to fix a false positive for `Style/CombinableLoop` when the same method with different arguments and safe navigation. ([@koic][])
+
+## 1.24.0 (2021-12-23)
+
+### New features
+
+* [#10279](https://github.com/rubocop/rubocop/pull/10279): Support Ruby 3.1's anonymous block forwarding syntax. ([@koic][])
+* [#10295](https://github.com/rubocop/rubocop/pull/10295): Support Ruby 3.1's hash value omission syntax for `Layout/HashAlignment`. ([@koic][])
+* [#10303](https://github.com/rubocop/rubocop/issues/10303): Add `AllowedNumbers` option to `Style/NumericLiterals`. ([@koic][])
+* [#10290](https://github.com/rubocop/rubocop/pull/10290): Add new `Naming/BlockForwarding` cop. ([@koic][])
+* [#10289](https://github.com/rubocop/rubocop/pull/10289): Add `EnforcedShorthandSyntax` option to `Style/HashSyntax` cop to support Ruby 3.1's hash value omission syntax by default. ([@koic][])
+* [#10257](https://github.com/rubocop/rubocop/pull/10257): Add new `Style/MapToHash` cop. ([@dvandersluis][])
+* [#10261](https://github.com/rubocop/rubocop/pull/10261): Add new `Style/FileRead` cop. ([@leoarnold][])
+* [#10291](https://github.com/rubocop/rubocop/pull/10291): Support Ruby 3.1's hash value omission syntax for `Layout/SpaceAfterColon`. ([@koic][])
+* [#10260](https://github.com/rubocop/rubocop/pull/10260): Add new `Style/FileWrite` cop. ([@leoarnold][])
+* [#10307](https://github.com/rubocop/rubocop/pull/10307): Support Ruby 2.7's numbered parameter for `Metrics/BlockLength`, `Metrics/ClassLength`, `Metrics/MethodLength`, and `Metrics/ModuleLength` cops. ([@koic][])
+* [#7671](https://github.com/rubocop/rubocop/issues/7671): Add cli option `--show-docs-url` to print out documentation url for given cops. ([@HeroProtagonist][])
+* [#10308](https://github.com/rubocop/rubocop/pull/10308): Make `Style/CollectionCompact` aware of block pass argument. ([@koic][])
+
+### Bug fixes
+
+* [#10285](https://github.com/rubocop/rubocop/issues/10285): Fix an incorrect autocorrect for `Style/SoleNestedConditional` when using nested `if` within `if foo = bar`. ([@koic][])
+* [#10309](https://github.com/rubocop/rubocop/pull/10309): Fix a false positive for `Bundler/DuplicatedGem` when a gem conditionally duplicated within multi-statement bodies. ([@fatkodima][])
+* [#10300](https://github.com/rubocop/rubocop/issues/10300): Fix an incorrect autocorrect for `Layout/DotPosition` and `Style/RedundantSelf` when auto-correction conflicts. ([@koic][])
+* [#10284](https://github.com/rubocop/rubocop/issues/10284): Fix an incorrect autocorrect for `Style/RedundantRegexpCharacterClass` when regexp containing an unescaped `#`. ([@koic][])
+* [#10265](https://github.com/rubocop/rubocop/issues/10265): Fix `Style/IfInsideElse` to be able to handle `if-then` nested inside an `else` without clobbering. ([@dvandersluis][])
+* [#10297](https://github.com/rubocop/rubocop/issues/10297): Fix a false positive for `Lint/DeprecatedOpenSSLConstant` when building digest using an algorithm string and nested digest constants. ([@koic][])
+* [#10282](https://github.com/rubocop/rubocop/issues/10282): Fix an incorrect autocorrect for `Style/EmptyCaseCondition` when using `when ... then` in `case` in a method call. ([@koic][])
+* [#10273](https://github.com/rubocop/rubocop/issues/10273): Fix a false positive for `InternalAffairs/UndefinedConfig` to suppress a false wrong namespace warning. ([@koic][])
+* [#10305](https://github.com/rubocop/rubocop/issues/10305): Fix an incorrect autocorrect for `Style/HashConversion` when using `Hash[a || b]`. ([@koic][])
+* [#10264](https://github.com/rubocop/rubocop/pull/10264): Fix the following incorrect auto-correct for `Style/MethodCallWithArgsParentheses` with `Layout/SpaceBeforeFirstArg`. ([@koic][])
+* [#10276](https://github.com/rubocop/rubocop/issues/10276): Fix an incorrect autocorrect for `Style/RedundantInterpolation` when using a method call without parentheses in string interpolation. ([@koic][])
+
+### Changes
+
+* [#10253](https://github.com/rubocop/rubocop/pull/10253): Deprecate `RuboCop::Cop::EnforceSuperclass` module. ([@koic][])
+* [#10248](https://github.com/rubocop/rubocop/pull/10248): Make `Lint/DeprecatedClassMethods` aware of `ENV.freeze`. ([@koic][])
+* [#10269](https://github.com/rubocop/rubocop/issues/10269): Mark `Lint/IncompatibleIoSelectWithFiberScheduler` as unsafe auto-correction. ([@koic][])
+* [#8586](https://github.com/rubocop/rubocop/issues/8586): Add configuration parameter `AllowForAlignment` in `Layout/CommentIndentation`. ([@jonas054][])
+
 ## 1.23.0 (2021-11-15)
 
 ### New features
@@ -5969,3 +6045,8 @@
 [@hirasawayuki]: https://github.com/hirasawayuki
 [@grosser]: https://github.com/grosser
 [@mttkay]: https://github.com/mttkay
+[@leoarnold]: https://github.com/leoarnold
+[@danieldiekmeier]: https://github.com/danieldiekmeier
+[@joergschiller]: https://github.com/joergschiller
+[@berkos]: https://github.com/berkos
+[@nickpellant]: https://github.com/nickpellant

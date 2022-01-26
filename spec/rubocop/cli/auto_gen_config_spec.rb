@@ -379,7 +379,7 @@ RSpec.describe 'RuboCop::CLI --auto-gen-config', :isolated_environment do # rubo
                 '',
                 '# Offense count: 1',
                 '# Cop supports --auto-correct.',
-                '# Configuration parameters: Strict.',
+                '# Configuration parameters: Strict, AllowedNumbers.',
                 'Style/NumericLiterals:',
                 '  MinDigits: 7',
                 '',
@@ -634,6 +634,7 @@ RSpec.describe 'RuboCop::CLI --auto-gen-config', :isolated_environment do # rubo
          '',
          '# Offense count: 1',
          '# Cop supports --auto-correct.',
+         '# Configuration parameters: AllowForAlignment.',
          'Layout/CommentIndentation:',
          '  Exclude:',
          "    - 'example2.rb'",
@@ -735,6 +736,7 @@ RSpec.describe 'RuboCop::CLI --auto-gen-config', :isolated_environment do # rubo
          '',
          '# Offense count: 1',
          '# Cop supports --auto-correct.',
+         '# Configuration parameters: AllowForAlignment.',
          'Layout/CommentIndentation:',
          '  Exclude:',
          "    - 'example2.rb'",
@@ -897,6 +899,7 @@ RSpec.describe 'RuboCop::CLI --auto-gen-config', :isolated_environment do # rubo
 
         # Offense count: 1
         # Cop supports --auto-correct.
+        # Configuration parameters: AllowForAlignment.
         Layout/CommentIndentation:
           Exclude:
             - 'example2.rb'
@@ -1001,6 +1004,7 @@ RSpec.describe 'RuboCop::CLI --auto-gen-config', :isolated_environment do # rubo
          'again.',
          '',
          '# Cop supports --auto-correct.',
+         '# Configuration parameters: AllowForAlignment.',
          'Layout/CommentIndentation:',
          '  Exclude:',
          "    - 'example2.rb'",
@@ -1198,8 +1202,9 @@ RSpec.describe 'RuboCop::CLI --auto-gen-config', :isolated_environment do # rubo
       expect(cli.run(['--auto-gen-config'])).to eq(0)
       expect(File.readlines('.rubocop_todo.yml')[10..-1].join)
         .to eq(<<~YAML)
-          # Configuration parameters: UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
+          # Configuration parameters: EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
           # SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
+          # SupportedShorthandSyntax: always, never, either
           Style/HashSyntax:
             EnforcedStyle: hash_rockets
         YAML
@@ -1211,8 +1216,9 @@ RSpec.describe 'RuboCop::CLI --auto-gen-config', :isolated_environment do # rubo
       expect(cli.run(['--auto-gen-config'])).to eq(0)
       expect(File.readlines('.rubocop_todo.yml')[10..-1].join)
         .to eq(<<~YAML)
-          # Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
+          # Configuration parameters: EnforcedStyle, EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
           # SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
+          # SupportedShorthandSyntax: always, never, either
           Style/HashSyntax:
             Exclude:
               - 'example1.rb'
